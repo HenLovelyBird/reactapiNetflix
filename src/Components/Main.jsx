@@ -1,28 +1,40 @@
 import React from 'react';
-import { Input } from '.reactstrap';
+import { Input } from "reactstrap"
 import NavHead from './NavHead';
 import MovieList from './MovieList';
 
 
 
 class Main extends React.Component {
-    state = {}
-    render() {
-        return (
-            <div>
-                <NavHead />
-            </div>
+    state = { 
+        search:"",
+        selectedMovie: undefined
+    }
 
-            <Input className="my-3"
+    selectedMovie = (movie) => {
+        this.setState({
+        selectedMovie: movie
+        })
+    }
+    render() {
+        return (<>
+    
+            <NavHead> </NavHead>
+          
+            {/* SearchBar */}
+            {/* <Input className="my-3"
                 type="text"
                 value={this.state.search}
-                onChange={(val) => this.setState({ search: val.target.value.toLowerCase() })}
+                onChange={(val) => this.setState({ search: val.target.value.toLowerCase()})}
                 placeholder="Type to search">
-            </Input>
+            </Input> */}
+            {/* End Searchbar */}
+            
+            {/* <MovieList movies={} filter={this.state.search} onMovieSelected={this.selectedMovie}></MovieList> */}
 
-            <MovieList />
+            
 
-        );
+        </>);
     }
 }
 
