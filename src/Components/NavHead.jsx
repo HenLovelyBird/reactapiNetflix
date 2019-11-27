@@ -3,7 +3,22 @@ import {Nav, NavItem, NavLink} from 'reactstrap';
 
 class NavHead extends React.Component {
     state = { 
-            searchMovies: ""
+            searchMovies: "",
+            searchString: ""
+            
+    }
+    searchChange = ev => {
+        this.setState({
+          searchString: ev.target.value.toLowerCase()
+        });
+      };
+
+    searchMovies = async (query) => {
+        let response = await fetch("http://www.omdbapi.com/?apikey=24ad60e9&s=" + query);
+        let movieResult = await response.json();
+        this.setState({
+            movies: [...this.state.movies, { items: movieResult.Search, title: query + " search result" }]
+        });
     }
     render() {
         return (

@@ -6,6 +6,7 @@ import MovieDetails from './MovieDetails'
 class MovieList extends React.Component {
     state = { }
     render() {
+        console.log('is this undefined?', this.props.movies)
         return (<>
             <Row>
                 <h3>{this.props.title}</h3>

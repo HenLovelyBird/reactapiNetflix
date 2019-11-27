@@ -1,54 +1,31 @@
 import React from 'react';
-import {Container} from "reactstrap"
+import { Container, Row} from "reactstrap"
+import HomePage from './HomePage';
 import MovieList from './MovieList';
+import MovieDetails from './MovieDetails';
 import NavHead from './NavHead';
-import TestLifeCycle from './TestLifeCycle';
+import ShowDetail from './ShowDetail';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-
-
-class  Main extends React.Component {
-    state = { //
-        movies: []
-     }
-
-     searchMovies = async (query) => {
-        let response = await fetch ("http://www.omdbapi.com/?apikey=24ad60e9&s=" + query);
-        let movieResult = await response.json();
-        this.setState({
-            movies: [...this.state.movies, { items: movieResult.Search, title: query + " search result" }] 
-        });
-     }
-
-     render() { 
-        return (<>
-        <TestLifeCycle/>
-
-        <NavHead onSearch={this.searchMovies} />     
-     
-     
-            
-        <Container flex>
-            {this.state.movies.map((movie, index)=>
-                <MovieList movies={movie.items} key={index} title={movie.Title} /> )}
-            {/* <MovieList movies={this.state.movies} title="Harry Potter"></MovieList> */}
-            {/* {this.state.movies.map((movie, index) => <img className="col-md-3" alt={"movie poster for" + movie.Title} src={movie.Poster} key={index} />)} */}
+class Main extends React.Component {
+  render() {
+    return (
+      <Router>
+        {/* everypage: */}
+        <NavHead onSearch={this.searchMovies}/>
+        
+        {/* dir of pages: */}
+        <Container>
+          <Row>
+            <Route path="/" exact component={HomePage} />
+            <Route path="/MovieList" component={MovieList} />
+            <Route path="/MovieDetails" component={MovieDetails} />
+            <Route path="/ShowDetail/:allMovieDetails" component={ShowDetail} />
+          </Row>
         </Container>
-        </>); 
-    }
-
-     componentDidMount = async () => {
-        let movieTitles = ["Harry Potter", "James Bond", "Star Wars", "Lord of the Rings"];
-
-            movieTitles.forEach(async movie => {
-                let response = await fetch ("http://www.omdbapi.com/?apikey=24ad60e9&s=" + movie);
-                let movieResult = await response.json();
-                this.setState({
-                    movies: [...this.state.movies, { items: movieResult.Search, title: movie }] 
-                });
-            })
-
-        }
-    }
-    
+      </Router>
+    );
+  }
+}
 
 export default Main;
