@@ -38,7 +38,7 @@ class Main extends React.Component {
             console.log('MOVIERESULT', movieResult)
             this.setState({
                 movies: [...this.state.movies, { items: movieResult.Search, title: movie }]
-            }, () => {console.log('and here?', this.state.movies)});
+            // }, () => {console.log('and here?', this.state.movies)});
         })
 
     }
