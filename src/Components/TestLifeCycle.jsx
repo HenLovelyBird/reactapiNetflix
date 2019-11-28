@@ -14,7 +14,7 @@ class testLifeCycle extends React.Component {
         console.log("The component has been rendered") //each and every time the componenet mounting and element updating 
         return (
             <div className="my-5">
-                Hello
+                
             </div>
         );
     }

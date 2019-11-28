@@ -10,7 +10,7 @@ class ShowDetail extends React.Component {
 render () { 
     
 if (this.state.movie) {
-    console.log('in showdetail', this.state.movie);
+    // console.log('in showdetail', this.state.movie);
     return ( 
         <Row>
             {/* // should disply ALL the infos from omdblink including comments */}
@@ -23,14 +23,14 @@ if (this.state.movie) {
         }
     }
 
-    componentDidMount = async () => {
-        let allMovieDetails = await fetch("http://www.omdbapi.com/?apikey=dbb55456&i=tt1756545"); 
-            allMovieDetails = await allMovieDetails.json();
-            console.log('allMovieDetails', allMovieDetails);
-            this.setState({
-            movie: allMovieDetails
-        });
-    }
+//     componentDidMount = async () => {
+//         let allMovieDetails = await fetch("http://www.omdbapi.com/?apikey=dbb55456&i=" + imdbID); 
+//             allMovieDetails = await allMovieDetails.json();
+//             console.log('allMovieDetails', allMovieDetails);
+//             this.setState({
+//             movie: allMovieDetails
+//         });
+//     }
 }
 
 export default ShowDetail;
